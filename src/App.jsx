@@ -3,23 +3,30 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Banner from './components/Banner';
-import Footer from './components/Footer';
+/*import Footer from './components/Footer';*/
 import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
 import Contact from './pages/Contact';
+import Footer from './components/Footer/Footer';
+import Header from './components/Header/Header';
+import { useState } from 'react';
 
 const App = () => {
+
+    const [login, setLogin] = useState(false);
+
   return (
-    <Router>
-      <Navbar />
+      <Router>
+      <Header/>
+          <Navbar setLogin={setLogin} login={login } />
       <Routes>
         <Route
           path="/"
           element={
             <>
-              <Banner title="Home" />
-              <Home />
+              <Banner title="Home"/>
+                  <Home />
             </>
           }
         />
@@ -28,7 +35,7 @@ const App = () => {
           element={
             <>
               <Banner title="About Us" />
-              <About />
+                  <About setLogin={setLogin} login={login} />
             </>
           }
         />
